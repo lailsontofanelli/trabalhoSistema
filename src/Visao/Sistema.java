@@ -46,7 +46,7 @@ public class Sistema extends javax.swing.JFrame {
         viagensServico = new javax.swing.JMenuItem();
         financeiro = new javax.swing.JMenu();
         consultarFinanceiro = new javax.swing.JMenuItem();
-        relatorioFinanceiro = new javax.swing.JMenuItem();
+        financasMes = new javax.swing.JMenuItem();
         pagamentoFinanceiro = new javax.swing.JMenuItem();
         consultas = new javax.swing.JMenu();
         clientesConsultas = new javax.swing.JMenuItem();
@@ -196,13 +196,13 @@ public class Sistema extends javax.swing.JFrame {
         });
         financeiro.add(consultarFinanceiro);
 
-        relatorioFinanceiro.setText("Finanças do mês");
-        relatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+        financasMes.setText("Finanças do mês");
+        financasMes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                relatorioFinanceiroActionPerformed(evt);
+                financasMesActionPerformed(evt);
             }
         });
-        financeiro.add(relatorioFinanceiro);
+        financeiro.add(financasMes);
 
         pagamentoFinanceiro.setText("Pagamento");
         pagamentoFinanceiro.addActionListener(new java.awt.event.ActionListener() {
@@ -399,13 +399,13 @@ public class Sistema extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_consultarFinanceiroActionPerformed
 
-    private void relatorioFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatorioFinanceiroActionPerformed
+    private void financasMesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_financasMesActionPerformed
         // TODO add your handling code here:
         ConsultarRelatorio cad1 = new ConsultarRelatorio();
         cad1.setLocationRelativeTo(null);
         cad1.setVisible(true);
         //dispose();
-    }//GEN-LAST:event_relatorioFinanceiroActionPerformed
+    }//GEN-LAST:event_financasMesActionPerformed
 
     private void pagamentoFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagamentoFinanceiroActionPerformed
         // TODO add your handling code here:
@@ -544,6 +544,7 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JMenu empresa;
     private javax.swing.JMenuItem escolarServico;
     private javax.swing.JMenuItem escolaresMenu;
+    private javax.swing.JMenuItem financasMes;
     private javax.swing.JMenu financeiro;
     private javax.swing.JMenuItem funcionariosConsultas;
     private javax.swing.JMenuItem funcionariosMenu;
@@ -554,7 +555,6 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JMenuItem pagamentoFinanceiro;
     private javax.swing.JMenuItem pecas;
     private javax.swing.JMenuItem pecasMenu;
-    private javax.swing.JMenuItem relatorioFinanceiro;
     private javax.swing.JMenu servico;
     private javax.swing.JMenuItem transporteConsultas;
     private javax.swing.JMenuItem turista;
