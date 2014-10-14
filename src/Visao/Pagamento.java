@@ -53,10 +53,9 @@ public class Pagamento extends javax.swing.JFrame {
         cancelar = new javax.swing.JButton();
         confirma = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
-        textoCpf = new javax.swing.JLabel();
         buscar = new javax.swing.JButton();
-        cpf = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        pesquisa = new javax.swing.JTextField();
+        cepef = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         tipo = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
@@ -110,9 +109,6 @@ public class Pagamento extends javax.swing.JFrame {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Busca"));
 
-        textoCpf.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
-        textoCpf.setText("*cpf do responsável se tipo serviço for turismo");
-
         buscar.setText("Buscar");
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -120,7 +116,7 @@ public class Pagamento extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("CPF:");
+        cepef.setText("CPF:");
 
         jLabel5.setText("Tipo Serviço:");
 
@@ -142,15 +138,12 @@ public class Pagamento extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
+                        .addComponent(cepef)
                         .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textoCpf)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(buscar)))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(buscar)))
+                .addGap(0, 166, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -160,11 +153,10 @@ public class Pagamento extends javax.swing.JFrame {
                     .addComponent(tipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pesquisa, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(textoCpf))
+                    .addComponent(cepef))
+                .addGap(16, 16, 16))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
@@ -358,7 +350,7 @@ public class Pagamento extends javax.swing.JFrame {
                     String mesAno = date.substring(3, 10);
                     listaEscolar = new ArrayList(PagamentoEscolar.consultarPagamentoEfetuado(SolCpf.getText(), mesAno));
                     if(!listaEscolar.isEmpty()){
-                        JOptionPane.showMessageDialog(cpf, "O pagamento ja foi efetuado para este cliente na data informada.\n"
+                        JOptionPane.showMessageDialog(pesquisa, "O pagamento ja foi efetuado para este cliente na data informada.\n"
                                 + "Consulte os pagamentos efetuados.");
                         return;
                     }
@@ -377,7 +369,7 @@ public class Pagamento extends javax.swing.JFrame {
                     String mesAno = date.substring(3, 10);
                     listaTurismo = new ArrayList(PagamentoTurismo.consultarPagamentoEfetuado(SolCpf.getText(), mesAno));
                     if(!listaTurismo.isEmpty()){
-                        JOptionPane.showMessageDialog(cpf, "O pagamento ja foi efetuado para este cliente na data informada.\n"
+                        JOptionPane.showMessageDialog(pesquisa, "O pagamento ja foi efetuado para este cliente na data informada.\n"
                                 + "Consulte os pagamentos efetuados.");
                         return;
                     }
@@ -408,17 +400,18 @@ public class Pagamento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um tipo de serviço.");
             return;
         }
-        if(cpf.getText().equals("")){
-            JOptionPane.showMessageDialog(null, "O cpf é obrigatório");
+        if(pesquisa.getText().equals("")){
+            JOptionPane.showMessageDialog(null, cepef.getText() + " é obrigatório.");
             return;
         }
         
-        if(ValidaCPF.calculaCPF(cpf.getText()) == false){
-            JOptionPane.showMessageDialog(null, "CPF inválido.\nDigite um CPF válido formado por 11 números.");
-            return;
-        }
+        
         if(tipo.getSelectedItem() == "Escolar"){
-            String cpfEsc = cpf.getText();
+            if(ValidaCPF.calculaCPF(pesquisa.getText()) == false){
+                JOptionPane.showMessageDialog(null, "CPF inválido.\nDigite um CPF válido formado por 11 números.");
+                return;
+            }
+            String cpfEsc = pesquisa.getText();
             listaEscolar = new ArrayList(ClienteEscolar.consultarEscolarCpf(cpfEsc));
             if(listaEscolar.isEmpty()){
                 JOptionPane.showMessageDialog(null, "O cpf informado não está cadastrado.");
@@ -432,24 +425,28 @@ public class Pagamento extends javax.swing.JFrame {
             }
 
         }else{//if(tipo.getSelectedItem() == "Turismo"){
-            String cpfEsc = cpf.getText();
-            listaTurismo = new ArrayList(Turismo.consultarTurismoCpf(cpfEsc));
-            if(listaEscolar.isEmpty()){
-                JOptionPane.showMessageDialog(null, "O cpf informado não está cadastrado.");
-            }else{
-                tParcelas.setText("Parcelas:");
-                Dimension d = new Dimension(60, 20);
-                parcelas.setPreferredSize(d);
-                tValorParcela.setText("Valor de cada Parcela:");
-                tValorpar.setText("");
-                idVia.setText("Id Viagem:");
-                Turismo tur = (Turismo)listaTurismo.get(0); // aqui tem q ser chamada a tabela viagens
-                String v = String.valueOf(tur.getValor());
-                nome.setText(tur.getRespViagem());
-                solValor.setText(v);
-                //SolCpf.setText(tur.get);
-                //idViagem.setText(tur.get());
-                this.tipoServico = tipo.getSelectedItem().toString();
+            try{
+                int pesq = Integer.parseInt(pesquisa.getText());
+                listaTurismo = new ArrayList(Turismo.consultarViagemCodigo(pesq));
+                if(listaTurismo.isEmpty()){
+                    JOptionPane.showMessageDialog(null, "O ID informado não está cadastrado.");
+                }else{
+                    tParcelas.setText("Parcelas:");
+                    Dimension d = new Dimension(60, 20);
+                    parcelas.setPreferredSize(d);
+                    tValorParcela.setText("Valor de cada Parcela:");
+                    tValorpar.setText("");
+                    idVia.setText("Id Viagem:");
+                    Turismo tur = (Turismo)listaTurismo.get(0); // aqui tem q ser chamada a tabela viagens
+                    String v = String.valueOf(tur.getValor());
+                    nome.setText(tur.getRespViagem());
+                    solValor.setText(v);
+                    //SolCpf.setText(tur.get);
+                    //idViagem.setText(tur.get());
+                    this.tipoServico = tipo.getSelectedItem().toString();
+            }
+            }catch(NumberFormatException e){
+                JOptionPane.showMessageDialog(rootPane, "Digite um id válido formado por números.");
             }
         }
     }//GEN-LAST:event_buscarActionPerformed
@@ -465,9 +462,9 @@ public class Pagamento extends javax.swing.JFrame {
     private void tipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tipoActionPerformed
         // TODO add your handling code here:
         if(tipo.getSelectedItem() == "Turismo"){
-            textoCpf.setText("*CPF do responsável pela viagem.");
+            cepef.setText("Id Viagem:");
         }else{
-            textoCpf.setText("");
+            cepef.setText("CPF:");
         }
     }//GEN-LAST:event_tipoActionPerformed
 
@@ -511,15 +508,14 @@ public class Pagamento extends javax.swing.JFrame {
     private javax.swing.JButton boleto;
     private javax.swing.JButton buscar;
     private javax.swing.JButton cancelar;
+    private javax.swing.JLabel cepef;
     private javax.swing.JButton confirma;
-    private javax.swing.JTextField cpf;
     private javax.swing.JTextField data;
     private javax.swing.JLabel idVia;
     private javax.swing.JLabel idViagem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
@@ -530,22 +526,23 @@ public class Pagamento extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JLabel nome;
     private javax.swing.JComboBox parcelas;
+    private javax.swing.JTextField pesquisa;
     private javax.swing.JLabel solValor;
     private javax.swing.JLabel tParcelas;
     private javax.swing.JLabel tValorParcela;
     private javax.swing.JLabel tValorpar;
-    private javax.swing.JLabel textoCpf;
     private javax.swing.JComboBox tipo;
     // End of variables declaration//GEN-END:variables
 
     public void atualiza(){
         
         tParcelas.setText("");
+        cepef.setText("Tipo:");
         Dimension d = new Dimension(0, 0);
         parcelas.setPreferredSize(d);
         tValorParcela.setText("");
         tValorpar.setText("");
-        textoCpf.setText("");
+
         
         nome.setText("");
         solValor.setText("");

@@ -167,7 +167,9 @@ public class EscalonamentoMotorista implements Serializable {
                 for(int i=0; i < listaTurismo.size(); i++){
                     Motorista motorista = new Motorista();
                     Turismo turismo = (Turismo)listaTurismo.get(i);
-                    String velhaVolta = Integer.toString(turismo.getDataVolta());
+                    String DATE_FORMAT_NOW = "dd/MM/yyyy";
+                    SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT_NOW);
+                    String velhaVolta = sdf.format(turismo.getDataVolta());
                     
                     if(dataMaior(novaPartida, velhaVolta)){
                         motorista.setCpf(turismo.getMotorista());
@@ -181,7 +183,7 @@ public class EscalonamentoMotorista implements Serializable {
                                 listaMotorista.add(motorista);
                             }
                     }else{ // novaPartida < velhaVolta
-                        String velhaPartida = Integer.toString(turismo.getDataPart());
+                        String velhaPartida = sdf.format(turismo.getDataVolta());
                         if(dataMaior(velhaPartida, novaVolta)){
                             motorista.setCpf(turismo.getMotorista());
                             boolean pode = true;
