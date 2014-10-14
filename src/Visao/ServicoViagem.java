@@ -35,6 +35,8 @@ import javax.swing.WindowConstants;
      */
     public ServicoViagem() {
         initComponents();
+        atualizaMotorista();
+        atualizaResponsavel();
     }
     
     public ServicoViagem(Turismo c, int controlador) {
@@ -709,17 +711,16 @@ import javax.swing.WindowConstants;
        
     }//GEN-LAST:event_salvarActionPerformed
 
-    private void campoNomeViagemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeViagemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeViagemActionPerformed
 
-    private void comboMotoristaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboMotoristaActionPerformed
+    
+    private void comboMotoristaActionPerformed(java.awt.event.ActionEvent evt) {                                               
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboMotoristaActionPerformed
-
-    private void campoHoraPartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoHoraPartActionPerformed
+    } 
+    
+    
+    private void comboRespViagemActionPerformed(java.awt.event.ActionEvent evt) {                                                
         // TODO add your handling code here:
-    }//GEN-LAST:event_campoHoraPartActionPerformed
+    }   
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
@@ -901,4 +902,25 @@ import javax.swing.WindowConstants;
     private javax.swing.JLabel txtValor;
     private javax.swing.JLabel txtnEndereco;
     // End of variables declaration//GEN-END:variables
+    
+        public void atualizaMotorista(){
+        // TODO add your handling code here:
+        ArrayList lista = new ArrayList();
+        lista = new ArrayList(Motorista.consultarMotorista());
+         for (int i=0; i<lista.size(); i++){
+            Motorista mot = (Motorista)lista.get(i);
+            comboMotorista.addItem(mot.getCpf());
+         }
+        
+    }
+    public void atualizaResponsavel(){
+        // TODO add your handling code here:
+        ArrayList lista = new ArrayList();
+        lista = new ArrayList(ClienteTurismo.consultarTurista());
+         for (int i=0; i<lista.size(); i++){
+            ClienteTurismo tur = (ClienteTurismo)lista.get(i);
+            comboRespViagem.addItem(tur.getNome());
+         }
+        
+    }
 }
