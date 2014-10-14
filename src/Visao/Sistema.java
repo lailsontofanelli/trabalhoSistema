@@ -45,10 +45,8 @@ public class Sistema extends javax.swing.JFrame {
         escolarServico = new javax.swing.JMenuItem();
         viagensServico = new javax.swing.JMenuItem();
         financeiro = new javax.swing.JMenu();
-        atualizarFinanceiro = new javax.swing.JMenuItem();
         consultarFinanceiro = new javax.swing.JMenuItem();
         relatorioFinanceiro = new javax.swing.JMenuItem();
-        novoRelatorioFinanceiro = new javax.swing.JMenuItem();
         pagamentoFinanceiro = new javax.swing.JMenuItem();
         consultas = new javax.swing.JMenu();
         clientesConsultas = new javax.swing.JMenuItem();
@@ -190,15 +188,7 @@ public class Sistema extends javax.swing.JFrame {
         financeiro.setText("Financeiro");
         financeiro.setFont(new java.awt.Font("Liberation Sans", 1, 16)); // NOI18N
 
-        atualizarFinanceiro.setText("Atualizar");
-        atualizarFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                atualizarFinanceiroActionPerformed(evt);
-            }
-        });
-        financeiro.add(atualizarFinanceiro);
-
-        consultarFinanceiro.setText("Consultar");
+        consultarFinanceiro.setText("Finanças gerais");
         consultarFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 consultarFinanceiroActionPerformed(evt);
@@ -206,21 +196,13 @@ public class Sistema extends javax.swing.JFrame {
         });
         financeiro.add(consultarFinanceiro);
 
-        relatorioFinanceiro.setText("Consultar Relatórios");
+        relatorioFinanceiro.setText("Finanças do mês");
         relatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 relatorioFinanceiroActionPerformed(evt);
             }
         });
         financeiro.add(relatorioFinanceiro);
-
-        novoRelatorioFinanceiro.setText("Novo Relatório");
-        novoRelatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novoRelatorioFinanceiroActionPerformed(evt);
-            }
-        });
-        financeiro.add(novoRelatorioFinanceiro);
 
         pagamentoFinanceiro.setText("Pagamento");
         pagamentoFinanceiro.addActionListener(new java.awt.event.ActionListener() {
@@ -409,14 +391,6 @@ public class Sistema extends javax.swing.JFrame {
         //dispose();
     }//GEN-LAST:event_viagensServicoActionPerformed
 
-    private void atualizarFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_atualizarFinanceiroActionPerformed
-        // TODO add your handling code here:
-        AtualizarFinan cad1 = new AtualizarFinan();
-        cad1.setLocationRelativeTo(null);
-        cad1.setVisible(true);
-        //dispose();
-    }//GEN-LAST:event_atualizarFinanceiroActionPerformed
-
     private void consultarFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_consultarFinanceiroActionPerformed
         // TODO add your handling code here:
         ConsultarFinan cad1 = new ConsultarFinan();
@@ -432,14 +406,6 @@ public class Sistema extends javax.swing.JFrame {
         cad1.setVisible(true);
         //dispose();
     }//GEN-LAST:event_relatorioFinanceiroActionPerformed
-
-    private void novoRelatorioFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novoRelatorioFinanceiroActionPerformed
-        // TODO add your handling code here:
-        NovoRelatorio cad1 = new NovoRelatorio();
-        cad1.setLocationRelativeTo(null);
-        cad1.setVisible(true);
-        //dispose();
-    }//GEN-LAST:event_novoRelatorioFinanceiroActionPerformed
 
     private void pagamentoFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pagamentoFinanceiroActionPerformed
         // TODO add your handling code here:
@@ -569,7 +535,6 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JMenuItem CadLogin;
     private javax.swing.JMenu InfoMenu;
     private javax.swing.JMenuItem alterarDados;
-    private javax.swing.JMenuItem atualizarFinanceiro;
     private javax.swing.JMenu cadastro;
     private javax.swing.JMenuItem clienteMenu;
     private javax.swing.JMenuItem clientesConsultas;
@@ -586,7 +551,6 @@ public class Sistema extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JMenuItem motorista;
     private javax.swing.JMenuItem motoristasMenu;
-    private javax.swing.JMenuItem novoRelatorioFinanceiro;
     private javax.swing.JMenuItem pagamentoFinanceiro;
     private javax.swing.JMenuItem pecas;
     private javax.swing.JMenuItem pecasMenu;

@@ -141,17 +141,9 @@
             </Property>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="atualizarFinanceiro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Atualizar"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="atualizarFinanceiroActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="consultarFinanceiro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar"/>
+                <Property name="text" type="java.lang.String" value="Finan&#xe7;as gerais"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="consultarFinanceiroActionPerformed"/>
@@ -159,18 +151,10 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="relatorioFinanceiro">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Consultar Relat&#xf3;rios"/>
+                <Property name="text" type="java.lang.String" value="Finan&#xe7;as do m&#xea;s"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="relatorioFinanceiroActionPerformed"/>
-              </Events>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="novoRelatorioFinanceiro">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Novo Relat&#xf3;rio"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="novoRelatorioFinanceiroActionPerformed"/>
               </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="pagamentoFinanceiro">
