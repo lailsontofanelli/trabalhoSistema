@@ -174,18 +174,6 @@ public class SelVeiculo extends javax.swing.JFrame {
             if ("Sim".equals(disp)){
                 if (veic.getCapacidade() > nPassageiros){
                     if (serv != null){
-                        /* IMPLEMENTAR NO BOTÃO "SALVAR" DA TELA ANTERIOR
-                        ArrayList lista1 = new ArrayList();
-                        lista1 =  new ArrayList(Veiculo.consultarVeiculoPlaca(placa));
-                        Veiculo veic = (Veiculo)lista.get(0);
-                        veic.setDataDisp(this.dataV);
-                        try {
-                            veic.alterarVeiculo(veic);
-                        } catch (SQLException ex) {
-                            Logger.getLogger(SelVeiculo.class.getName()).log(Level.SEVERE, null, ex);
-                        } catch (ClassNotFoundException ex) {
-                            Logger.getLogger(SelVeiculo.class.getName()).log(Level.SEVERE, null, ex);
-                        }*/
                         serv.retornarPlaca(placa);
                         this.dispose();
                     }
