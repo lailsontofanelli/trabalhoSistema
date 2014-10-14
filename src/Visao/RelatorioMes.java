@@ -7,8 +7,13 @@
 package Visao;
 
 import Controle.ControleConexao;
+import Controle.PagamentoEscolar;
+import Controle.PagamentoTurismo;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,10 +24,17 @@ public class RelatorioMes extends javax.swing.JFrame {
     /**
      * Creates new form RelatorioMes
      */
+    
+    ArrayList listaEscolar = new ArrayList();
+    ArrayList listaTurismo = new ArrayList();
+    
     public RelatorioMes() {
         initComponents();
+        atualizaTabelaEscolar(dataRelatorio.getText());
+        atualizaTabelaTurismo(dataRelatorio.getText());
     }
     
+    /*
     private void gerarRelatorio() throws SQLException, ClassNotFoundException {
         HashMap filtro = new HashMap();
         
@@ -34,6 +46,7 @@ public class RelatorioMes extends javax.swing.JFrame {
         
         viwer.setVisible(true);
     }
+    */
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +59,7 @@ public class RelatorioMes extends javax.swing.JFrame {
 
         jButton1 = new javax.swing.JButton();
         jTextField2 = new javax.swing.JTextField();
-        data = new javax.swing.JTextField();
+        dataRelatorio = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         jLabel23 = new javax.swing.JLabel();
@@ -55,9 +68,9 @@ public class RelatorioMes extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        tabelaTurismo = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        tabelaEscolar = new javax.swing.JTable();
         totalGerais = new javax.swing.JTextField();
         totalSalario = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
@@ -65,6 +78,8 @@ public class RelatorioMes extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -74,8 +89,6 @@ public class RelatorioMes extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        data.setEditable(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setText("Caixa: ");
@@ -91,7 +104,7 @@ public class RelatorioMes extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Turismo");
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaTurismo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -102,9 +115,9 @@ public class RelatorioMes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(tabelaTurismo);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaEscolar.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -115,7 +128,7 @@ public class RelatorioMes extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(tabelaEscolar);
 
         totalGerais.setEditable(false);
 
@@ -189,6 +202,12 @@ public class RelatorioMes extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel10.setText("TOTAL:");
 
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel4.setText("Data para relatório:");
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 8)); // NOI18N
+        jLabel5.setText("(mm/aaaa)");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -205,7 +224,12 @@ public class RelatorioMes extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel4)
+                                .addGap(4, 4, 4)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(6, 6, 6))
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,8 +260,10 @@ public class RelatorioMes extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(data, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dataRelatorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -296,9 +322,76 @@ public class RelatorioMes extends javax.swing.JFrame {
             }
         });
     }
+    
+     private void atualizaTabelaEscolar(String data) {
+        try{
+            String mensagem;
+            String[] nomesColunas = {"Código", "Nome", "CPF", "Valor", "Data"};
+            if (data.length() > 0){
+                String mesAno = data.substring(3, 10);
+                listaEscolar = new ArrayList(PagamentoEscolar.consultarPagamentoData(mesAno));
+                mensagem = "Não existem Pagamentos de Escolar na data " + mesAno + ".";
+            }else{
+                listaEscolar = new ArrayList(PagamentoEscolar.consultarPagamento());
+                mensagem = "Não existem Pagamentos de Escolares efetuado.";
+                dataRelatorio.setText("");
+            }
+            Object[][] dadosVetor = new Object[listaEscolar.size()][nomesColunas.length];
+            for (int i=0; i<listaEscolar.size(); i++){
+                PagamentoEscolar pag = (PagamentoEscolar)listaEscolar.get(i);
+                dadosVetor[i][0] = pag.getId();
+                dadosVetor[i][1] = pag.getNome();
+                dadosVetor[i][2] = pag.getCpf();
+                dadosVetor[i][3] = pag.getValor();
+                dadosVetor[i][4] = pag.getData();
+            }
+            DefaultTableModel modelo = new DefaultTableModel(dadosVetor,nomesColunas);
+            tabelaEscolar.setModel(modelo);
+            if(listaEscolar.isEmpty()){
+                JOptionPane.showMessageDialog(this, mensagem);
+            }
+        }catch(StringIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this, "Data incorreta.\nDigite uma data do Tipo 'mm/aaaa'.");
+        }
+    }
+     
+     private void atualizaTabelaTurismo(String data) {
+        try{
+            String mensagem;
+            String[] nomesColunas = {"Código", "Nome", "CPF", "id Viagem", "Valor", "Parcelas", "Parcelas Pagas", "Data"};
+            if (data.length() > 0){ //&& data.length() == 10
+                String mesAno = data.substring(3, 10);
+                listaTurismo = new ArrayList(PagamentoTurismo.consultarPagamentoData(mesAno));
+                mensagem = "Não existem Pagamentos de Turismo na data " + mesAno + ".";
+            }else{
+                listaTurismo = new ArrayList(PagamentoTurismo.consultarPagamento());
+                mensagem = "Não existem Pagamentos de Turismo efetuados.";
+                dataRelatorio.setText("");
+            }
+            Object[][] dadosVetor = new Object[listaEscolar.size()][nomesColunas.length];
+            for (int i=0; i<listaTurismo.size(); i++){
+                PagamentoTurismo pag = (PagamentoTurismo)listaTurismo.get(i);
+                dadosVetor[i][0] = pag.getId();
+                dadosVetor[i][1] = pag.getNome();
+                dadosVetor[i][2] = pag.getCpf();
+                dadosVetor[i][3] = pag.getIdViagem();
+                dadosVetor[i][4] = pag.getValor();
+                dadosVetor[i][5] = pag.getParcelas();
+                dadosVetor[i][6] = pag.getParcelasPaga();
+                dadosVetor[i][7] = pag.getData();
+            }
+            DefaultTableModel modelo = new DefaultTableModel(dadosVetor,nomesColunas);
+            tabelaTurismo.setModel(modelo);
+            if(listaTurismo.isEmpty()){
+                JOptionPane.showMessageDialog(this, mensagem);
+            }
+        }catch(StringIndexOutOfBoundsException e){
+            JOptionPane.showMessageDialog(this, "Data incorreta.\nDigite uma data do Tipo 'mm/aaaa'.");
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField data;
+    private javax.swing.JTextField dataRelatorio;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -306,6 +399,8 @@ public class RelatorioMes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel3;
@@ -313,10 +408,10 @@ public class RelatorioMes extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator6;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTable tabelaEscolar;
+    private javax.swing.JTable tabelaTurismo;
     private javax.swing.JTextField totalGerais;
     private javax.swing.JTextField totalSalario;
     // End of variables declaration//GEN-END:variables
