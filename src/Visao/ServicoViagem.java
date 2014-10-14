@@ -58,9 +58,9 @@ import javax.swing.WindowConstants;
         camponEndereco.setText(c.getnEndereco());
         campoTempoVi.setText(Integer.toString(c.getTempoVi()));
         campoDistancia.setText(Integer.toString(c.getDistancia()));
-        //campoDataPart.setText(c.getDataPart());
+        campoDataPart.setText(c.getDataPart());
         campoHoraPart.setText(Integer.toString(c.getHoraPart()));
-        //campoDataVolta.setText(c.getDataVolta());
+        campoDataVolta.setText(c.getDataVolta());
         campoHoraVolta.setText(Integer.toString(c.getHoraVolta()));
         
         
@@ -684,9 +684,9 @@ import javax.swing.WindowConstants;
             turismo.setDestCidad(this.campoDestCidad.getText());
             turismo.setEndereco(this.campoEndereco.getText());
             turismo.setnEndereco(this.camponEndereco.getText());
-            //turismo.setDataPart(this.campoDataPart.getText());
+            turismo.setDataPart(this.campoDataPart.getText());
             turismo.setHoraPart(Integer.parseInt(this.campoHoraPart.getText()));
-            //turismo.setDataVolta(this.campoDataVolta.getText());
+            turismo.setDataVolta(this.campoDataVolta.getText());
             turismo.setHoraVolta(Integer.parseInt(this.campoHoraVolta.getText()));
             turismo.setTempoVi(Integer.parseInt(this.campoTempoVi.getText())); 
                     
