@@ -58,9 +58,12 @@ import javax.swing.WindowConstants;
         camponEndereco.setText(c.getnEndereco());
         campoTempoVi.setText(Integer.toString(c.getTempoVi()));
         campoDistancia.setText(Integer.toString(c.getDistancia()));
-        campoDataPart.setText(c.getDataPart());
+        
+        SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy");
+        campoDataPart.setText(sdf1.format(c.getDataPart()));
+        
         campoHoraPart.setText(Integer.toString(c.getHoraPart()));
-        campoDataVolta.setText(c.getDataVolta());
+        campoDataVolta.setText(sdf1.format(c.getDataVolta())); 
         campoHoraVolta.setText(Integer.toString(c.getHoraVolta()));
         
         
