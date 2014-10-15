@@ -685,13 +685,21 @@ import javax.swing.WindowConstants;
             turismo.getCodigo();
             turismo.setNomeViagem(this.campoNomeViagem.getText());
             turismo.setDestCidad(this.campoDestCidad.getText());
+            turismo.setEstado(this.campoEstado.getText());
             turismo.setEndereco(this.campoEndereco.getText());
             turismo.setnEndereco(this.camponEndereco.getText());
             turismo.setDataPart(this.campoDataPart.getText());
+            turismo.setDistancia(Integer.parseInt(this.campoDistancia.getText()));
+            SimpleDateFormat sdf1= new SimpleDateFormat("dd/MM/yyyy");
+            campoDataPart.setText(sdf1.format(c.getDataPart()));
+            
             turismo.setHoraPart(Integer.parseInt(this.campoHoraPart.getText()));
+            
             turismo.setDataVolta(this.campoDataVolta.getText());
             turismo.setHoraVolta(Integer.parseInt(this.campoHoraVolta.getText()));
             turismo.setTempoVi(Integer.parseInt(this.campoTempoVi.getText())); 
+            turismo.setValor(Integer.parseInt(this.campoValor.getText()));
+            turismo.setTaxaEmp(Integer.parseInt(this.campoTaxaEmp.getText()));
                     
             try {
                                 
